@@ -28,6 +28,7 @@ export default function AppLayout() {
             </nav>
             </header>
             <Outlet/>
+            <footer></footer>
         </div>
       
 
