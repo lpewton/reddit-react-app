@@ -5,8 +5,10 @@ import ROUTES from "./routes";
 export default function AppLayout() {
     return (
         <div>
-            <nav>
-                <ul>
+            <header>
+                <h3>Reddit Archeo</h3>
+            <nav className="navBar">
+                <ul className="navBar-ul">
                 <li>
                     <NavLink to={ROUTES.homeRoute()} >
                     Home
@@ -24,6 +26,7 @@ export default function AppLayout() {
                 </li>
                 </ul>
             </nav>
+            </header>
             <Outlet/>
         </div>
       
