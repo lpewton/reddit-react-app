@@ -8,7 +8,7 @@ import {
 import logo from '../logo.svg';
 import './App.css';
 import AppLayout from "./AppLayout";
-import Home from '../features/home';
+import Home from '../features/home/home';
 import Favorites from '../features/favorites';
 import Notes from '../features/notes';
 
