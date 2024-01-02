@@ -35,6 +35,9 @@ export default function Home() {
     return (
         <div>
             <Article />
+            <Article />
+            <Article />
+            <Article />
         </div>
     )
 }
