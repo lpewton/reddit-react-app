@@ -1,5 +1,5 @@
 import React from "react";
-import ROUTES from '../app/routes';
+import ROUTES from '../../app/routes';
 
 export default function Favorites() {
     return (

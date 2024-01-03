@@ -27,7 +27,7 @@ footer {
   height: 30px;
 }
 
-/* Articles */
+/* Article Card */
 .cardDiv {
   border: 1px solid black;
   border-radius: 8%;
@@ -37,17 +37,30 @@ footer {
   text-align: center;
 }
 
-h4 {
+.cardHeader {
+  display: flex;
+  align-items: center;
   border-bottom: solid 1px black;
+}
+
+i {
+  padding: 50%;
+  font-size: 30px;
+}
+
+h4 {
   padding: 2%;
-  margin-top: 1%;
+  margin: 1% 0;
+  width: 80%;
 }
 
 img {
   width: 90%;
   height: auto;
   border-radius: 5%;
+  margin-top: 5px;
 }
+
 
 .App {
   text-align: center;

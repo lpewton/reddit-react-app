@@ -9,7 +9,7 @@ import logo from '../logo.svg';
 import './App.css';
 import AppLayout from "./AppLayout";
 import Home from '../features/home/home';
-import Favorites from '../features/favorites';
+import Favorites from '../features/favorites/favorites';
 import Notes from '../features/notes';
 
 function App() {

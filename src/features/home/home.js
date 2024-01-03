@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 
 export default function Home() {
 
-    const [data, setData] = useState()
+    const [data, setData] = useState();
+    const [favorites, setFavorites] = useState([]);
 
     // Get Articles from false API
     const getArticles = async () => {
@@ -27,18 +28,28 @@ export default function Home() {
         getArticlesData();
     }, []);
 
+    const setToFavorite = (props) => {
+        console.log(props.article)
+    }
+
     if (!data) {
         return <h2>Loading...</h2>;
     }
-    console.log(data)
 
     return (
         <div>
             {data.map((article) => (
-                <div className="cardDiv">
-                <h4>{article.data.title}</h4>
-                <img src={article.data.thumbnail} alt="Article image"></img>
-            </div>
+                <div className="cardDiv" key={article.data.id}>
+                        <div className="cardHeader">
+                            <h4>{article.data.title}</h4>
+                            <div>
+                                <i className="fa-regular fa-heart" onClick={setToFavorite} article={article.data.id}></i>
+                            </div>
+                        </div>
+                    <Link to={article.data.url} target="_blank">
+                        <img src={article.data.thumbnail} alt="Article image"></img>
+                </Link>
+                    </div>
             ))}
         </div>
     )
