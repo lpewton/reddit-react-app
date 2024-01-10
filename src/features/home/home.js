@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
+import { addFavorite, selectFavoriteArticles } from "../favorites/favoritesSlice";
+import { useDispatch } from 'react-redux';
 
 export default function Home() {
 
     const [data, setData] = useState();
-    const [favorites, setFavorites] = useState([]);
 
-    // Get Articles from false API
+    const dispatch = useDispatch();
+    
+    // Get Articles from API
     const getArticles = async () => {
         const requestUrl = `https://www.reddit.com/r/archaeology/new.json`;
 
@@ -27,10 +30,10 @@ export default function Home() {
 
         getArticlesData();
     }, []);
-
-    const setToFavorite = (props) => {
-        console.log(props.article)
-    }
+    
+    const onAddArticleHandler = (article) => {
+        dispatch(addFavorite(article));
+      };
 
     if (!data) {
         return <h2>Loading...</h2>;
@@ -38,12 +41,15 @@ export default function Home() {
 
     return (
         <div>
+            <h2>Recent Posts</h2>
             {data.map((article) => (
                 <div className="cardDiv" key={article.data.id}>
                         <div className="cardHeader">
                             <h4>{article.data.title}</h4>
                             <div>
-                                <i className="fa-regular fa-heart" onClick={setToFavorite} article={article.data.id}></i>
+                                <button onClick={() => onAddArticleHandler(article)}>
+                                    <i className="fa-regular fa-heart" article={article.data.id}></i>
+                                </button>
                             </div>
                         </div>
                     <Link to={article.data.url} target="_blank">
