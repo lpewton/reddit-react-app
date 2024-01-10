@@ -36,6 +36,11 @@ export default function Favorites() {
                     <Link to={article.data.url} target="_blank">
                         <img src={article.data.thumbnail} alt="Article image"></img>
                     </Link>
+            <form>
+                <label>New Note:</label>
+                <input type="text"></input>
+                <button type="submit">Add note</button>
+            </form>
                 </div>
             ))}
         </div>
