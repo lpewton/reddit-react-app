@@ -5,7 +5,7 @@ export const favoritesSlice = createSlice({
     initialState: [],
     reducers: {
         addFavorite: (state, action) => {
-            state.push(action.payload);
+            state.unshift(action.payload);
         },
         removeFavorite: (state, action) => {
             return state.filter(article => article.data.id !== action.payload.data.id)        }
