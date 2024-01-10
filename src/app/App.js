@@ -11,6 +11,7 @@ import AppLayout from "./AppLayout";
 import Home from '../features/home/home';
 import Favorites from '../features/favorites/favorites';
 import Notes from '../features/notes';
+import addFavorite from '../features/favorites/favoritesSlice';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/" element={<AppLayout />}>
           <Route path="home" element={<Home />}/>
           <Route path="favorites" element={<Favorites />}/>
+          <Route path="favorites/new" element={<addFavorite />} />
           <Route path="notes" element={<Notes />}/>
         </Route>
       </Routes>
