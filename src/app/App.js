@@ -10,7 +10,7 @@ import './App.css';
 import AppLayout from "./AppLayout";
 import Home from '../features/home/home';
 import Favorites from '../features/favorites/favorites';
-import Notes from '../features/notes';
+import Notes from '../features/notes/notes';
 import addFavorite from '../features/favorites/favoritesSlice';
 
 function App() {

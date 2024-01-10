@@ -3,6 +3,7 @@ import { selectFavoriteArticles } from "./favoritesSlice";
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeFavorite } from "./favoritesSlice";
+import Notes from "../notes/notes";
 
 
 export default function Favorites() {
@@ -11,7 +12,7 @@ export default function Favorites() {
 
     const dispatch = useDispatch();
     const onRemoveArticleHandler = (article) => {
-            dispatch(removeFavorite(article));
+        dispatch(removeFavorite(article));
     };
 
     useEffect(() => {
@@ -36,11 +37,7 @@ export default function Favorites() {
                     <Link to={article.data.url} target="_blank">
                         <img src={article.data.thumbnail} alt="Article image"></img>
                     </Link>
-            <form>
-                <label>New Note:</label>
-                <input type="text"></input>
-                <button type="submit">Add note</button>
-            </form>
+                    <Notes id={article.data.id}/>
                 </div>
             ))}
         </div>
