@@ -43,9 +43,11 @@ footer {
   border-bottom: solid 1px black;
 }
 
-i {
-  padding: 50%;
-  font-size: 30px;
+.likeButton {
+  padding: 25%;
+  background-color: rgba(165, 42, 42, 0.05);
+  font-size: 25px;
+  border-radius: 45%;
 }
 
 h4 {
