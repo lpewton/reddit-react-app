@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { selectFavoriteArticles } from "./favoritesSlice";
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { removeFavorite } from "./favoritesSlice";
 
 
 export default function Favorites() {
     const favoriteArticles = useSelector(selectFavoriteArticles);
     const [favoritesTitles, setFavoritesTitles] = useState([]);
+
+    const dispatch = useDispatch();
+    const onRemoveArticleHandler = (article) => {
+            dispatch(removeFavorite(article));
+    };
 
     useEffect(() => {
         // Using map to extract article titles and update state
@@ -23,7 +29,7 @@ export default function Favorites() {
                         <h4>{article.data.title}</h4>
                         <div>
                             <button className="likeButton">
-                                <i className="fa-sharp fa-solid fa-xmark" article={article.data.id}></i>
+                                <i className="fa-sharp fa-solid fa-xmark" article={article.data.id} onClick={() => onRemoveArticleHandler(article)}></i>
                             </button>
                         </div>
                     </div>
