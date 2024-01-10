@@ -11,6 +11,7 @@ export default function Favorites() {
     const [favoritesTitles, setFavoritesTitles] = useState([]);
 
     const dispatch = useDispatch();
+    
     const onRemoveArticleHandler = (article) => {
         dispatch(removeFavorite(article));
     };

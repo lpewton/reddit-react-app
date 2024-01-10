@@ -63,6 +63,14 @@ img {
   margin-top: 5px;
 }
 
+/* Notes */
+.commentDiv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 5%;
+  width: 90%;
+}
 
 .App {
   text-align: center;

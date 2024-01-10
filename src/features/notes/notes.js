@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { addNote, selectNotes } from "./notesSlice";
+import { addNote, removeNote, selectNotes } from "./notesSlice";
 
 
 export default function Notes(props) {
@@ -18,6 +18,11 @@ export default function Notes(props) {
         }));
         setNote('')
     };
+
+    const onRemoveNoteHandler = (note) => {
+        dispatch(removeNote(note));
+    };
+
     const generateUniqueId = () => {
         return Date.now().toString();
     };
@@ -26,8 +31,9 @@ export default function Notes(props) {
     return (
         <div>
             {filteredNotes.map((note) => (
-                <div key={note.id}>
+                <div className="commentDiv" key={note.id}>
                     <p>{note.comment}</p>
+                    <i className="fa-sharp fa-solid fa-xmark" onClick={() => onRemoveNoteHandler(note)}></i>
                 </div>
             ))}
             <form onSubmit={onSubmitHandler}>
