@@ -21,7 +21,7 @@ export default function Favorites() {
         }
     },[]);
 
-    
+
     // Remove articles from LocalStorage and Front end
     const onRemoveArticleHandler = (article) => {
         

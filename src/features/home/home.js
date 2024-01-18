@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { selectFavoriteArticles } from "../favorites/favoritesSlice";
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 export default function Home() {
 
     const [data, setData] = useState();
-    const favoriteArticles = useSelector(selectFavoriteArticles);
+    const [favoriteArticles, setFavoriteArticles] = useState([]);
 
-    const dispatch = useDispatch();
 
     // Get Articles from API
     const getArticles = async () => {
@@ -30,16 +29,28 @@ export default function Home() {
         }
 
         getArticlesData();
+
+        // Retrieve data from localStorage
+        const storedArticlesString = localStorage.getItem('1');
+        // Retrieve existing data from local storage
+        let parsedData = JSON.parse(storedArticlesString);
+        if (storedArticlesString) {
+            // Set the parsed data to the state
+            for (const article of parsedData) {
+                setFavoriteArticles((prevArticles) => [...prevArticles, article]);
+            }
+        }
+
     }, []);
 
     const onAddArticleHandler = (article) => {
         const existingDataString = localStorage.getItem('1');
         // Retrieve existing data from local storage
         let existingData = existingDataString ? JSON.parse(existingDataString) : [];
-        
+
         // Ensure existingData is an array
         existingData = Array.isArray(existingData) ? existingData : [];
-        
+
         const alreadyThere = existingData.filter((existingArticle) => existingArticle.data.title === article.data.title);
 
         if (alreadyThere.length > 0) {
@@ -47,9 +58,11 @@ export default function Home() {
         } else {
             // Add the new article to the existing data
             const updatedData = [...existingData, article];
-    
+
             // Set the updated data back to local storage
             localStorage.setItem('1', JSON.stringify(updatedData));
+            setFavoriteArticles(updatedData);
+
         }
     };
 
@@ -66,7 +79,7 @@ export default function Home() {
                         <h4>{article.data.title}</h4>
                         <div>
                             <button id="like-button" className="likeButton" onClick={() => onAddArticleHandler(article)}>
-                                <i className={`${favoriteArticles.some((favoriteArticle) => favoriteArticle.data.title === article.data.title) ? 'fa-solid' : 'fa-regular'} fa-heart`} article={article.data.id}></i>                                
+                                <i className={`${favoriteArticles.some((favoriteArticle) => favoriteArticle.data.title === article.data.title) ? 'fa-solid' : 'fa-regular'} fa-heart`} article={article.data.id}></i>
                             </button>
                         </div>
                     </div>
