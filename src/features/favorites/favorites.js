@@ -1,48 +1,41 @@
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import Notes from "../notes/notes";
-import { removeFavorite } from "./favoritesSlice";
-
-
 
 export default function Favorites() {
     const [favoriteArticles, setFavoriteArticles] = useState([]);
 
-    const dispatch = useDispatch();
+    // Retrieve data from localStorage
+    const storedArticlesString = localStorage.getItem('1');
+    // Retrieve existing data from local storage
+    let parsedData = JSON.parse(storedArticlesString);
 
-    const onRemoveArticleHandler = (article) => {
-        const existingDataString = localStorage.getItem('1');
-        dispatch(removeFavorite(article))
-
-            // Retrieve existing data from local storage
-            let existingData = JSON.parse(existingDataString);
-
-            // Ensure existingData is an array
-            existingData = Array.isArray(existingData) ? existingData : [];
-
-            // Filter out the article to remove
-            const updatedData = existingData.filter((existingArticle) => existingArticle.data.title !== article.data.title);
-
-            // Set the updated data back to local storage
-            localStorage.setItem('1', JSON.stringify(updatedData)); 
-            setFavoriteArticles(updatedData);
-    };
-
+    // Add the favorite Articles to the Front end
     useEffect(() => {
-        // Step 1: Retrieve data from localStorage
-        const storedArticlesString = localStorage.getItem('1');
 
         if (storedArticlesString) {
-            // Step 2: Parse the data
-            const parsedData = JSON.parse(storedArticlesString);
-
-            // Step 3: Set the parsed data to the state
+            // Set the parsed data to the state
             for (const article of parsedData) {
                 setFavoriteArticles((prevArticles) => [...prevArticles, article]);
             }
         }
     },[]);
+
+    
+    // Remove articles from LocalStorage and Front end
+    const onRemoveArticleHandler = (article) => {
+        
+        // Ensure existingData is an array
+        parsedData = Array.isArray(parsedData) ? parsedData : [];
+        
+        // Filter out the article to remove
+        const updatedData = parsedData.filter((existingArticle) => existingArticle.data.title !== article.data.title);
+        
+        // Set the updated data back to local storage
+        localStorage.setItem('1', JSON.stringify(updatedData)); 
+        setFavoriteArticles(updatedData);
+    };
+
 
     return (
         <div>

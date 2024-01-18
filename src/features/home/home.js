@@ -33,17 +33,18 @@ export default function Home() {
     }, []);
 
     const onAddArticleHandler = (article) => {
-        const alreadyThere = favoriteArticles.filter((existingArticle) => existingArticle.data.title === article.data.title);
+        const existingDataString = localStorage.getItem('1');
+        // Retrieve existing data from local storage
+        let existingData = existingDataString ? JSON.parse(existingDataString) : [];
+        
+        // Ensure existingData is an array
+        existingData = Array.isArray(existingData) ? existingData : [];
+        
+        const alreadyThere = existingData.filter((existingArticle) => existingArticle.data.title === article.data.title);
+
         if (alreadyThere.length > 0) {
             return;
         } else {
-            const existingDataString = localStorage.getItem('1');
-            // Retrieve existing data from local storage
-            let existingData = existingDataString ? JSON.parse(existingDataString) : [];
-    
-            // Ensure existingData is an array
-            existingData = Array.isArray(existingData) ? existingData : [];
-    
             // Add the new article to the existing data
             const updatedData = [...existingData, article];
     
