@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
-import { addFavorite, selectFavoriteArticles } from "../favorites/favoritesSlice";
+import { selectFavoriteArticles } from "../favorites/favoritesSlice";
 import { useDispatch, useSelector } from 'react-redux';
 
 export default function Home() {
 
     const [data, setData] = useState();
     const favoriteArticles = useSelector(selectFavoriteArticles);
-
 
     const dispatch = useDispatch();
 
@@ -34,11 +33,22 @@ export default function Home() {
     }, []);
 
     const onAddArticleHandler = (article) => {
-        const alreadyThere = favoriteArticles.filter((existingArticle) => existingArticle.data.title === article.data.title)
+        const alreadyThere = favoriteArticles.filter((existingArticle) => existingArticle.data.title === article.data.title);
         if (alreadyThere.length > 0) {
-           return
+            return;
         } else {
-            dispatch(addFavorite(article));
+            const existingDataString = localStorage.getItem('1');
+            // Retrieve existing data from local storage
+            let existingData = existingDataString ? JSON.parse(existingDataString) : [];
+    
+            // Ensure existingData is an array
+            existingData = Array.isArray(existingData) ? existingData : [];
+    
+            // Add the new article to the existing data
+            const updatedData = [...existingData, article];
+    
+            // Set the updated data back to local storage
+            localStorage.setItem('1', JSON.stringify(updatedData));
         }
     };
 

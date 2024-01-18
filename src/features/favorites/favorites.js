@@ -1,19 +1,32 @@
-import React from "react";
-import { selectFavoriteArticles } from "./favoritesSlice";
+import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { removeFavorite } from "./favoritesSlice";
+import { useDispatch } from 'react-redux';
 import Notes from "../notes/notes";
 
 
+
 export default function Favorites() {
-    const favoriteArticles = useSelector(selectFavoriteArticles);
+    const [favoriteArticles, setFavoriteArticles] = useState([]);
 
     const dispatch = useDispatch();
     
     const onRemoveArticleHandler = (article) => {
-        dispatch(removeFavorite(article));
     };
+
+    useEffect(() => {
+        // Step 1: Retrieve data from localStorage
+        const storedArticlesString = localStorage.getItem('1');
+    
+        if (storedArticlesString) {
+          // Step 2: Parse the data
+          const parsedData = JSON.parse(storedArticlesString);
+          
+          // Step 3: Set the parsed data to the state
+          for (const article of parsedData) {
+            setFavoriteArticles((prevArticles) => [...prevArticles, article]);
+        }
+        }
+      }, []);
 
     return (
         <div>
