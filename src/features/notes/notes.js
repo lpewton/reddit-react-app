@@ -1,22 +1,47 @@
-import React, { useState } from "react";
-import { useSelector, useDispatch } from 'react-redux';
-import { addNote, removeNote, selectNotes } from "./notesSlice";
-
+import React, { useState, useEffect } from "react";
+import { useDispatch } from 'react-redux';
+import { addNote, removeNote } from "./notesSlice";
 
 export default function Notes(props) {
-    const [note, setNote] = useState('')
+    const [notes, setNotes] = useState([]);
+    const [currentNote, setCurrentNote] = useState('');
     const dispatch = useDispatch();
-    const notes = useSelector(selectNotes) || [];
-    const filteredNotes = notes.filter((note) => note.parentArticle === props.id)
+
+    // Retrieve data from localStorage
+    const storedNotesString = localStorage.getItem('2');
+    // Retrieve existing data from local storage
+    let parsedData = JSON.parse(storedNotesString);
+    console.log(storedNotesString)
+
+    // Add the notes to the Front end
+    useEffect(() => {
+        if (Array.isArray(parsedData)) {
+            if (storedNotesString) {
+                // Set the parsed data to the state
+                setNotes(parsedData);
+            }
+        }
+    }, [storedNotesString]);
 
     const onSubmitHandler = (event) => {
         event.preventDefault();
-        dispatch(addNote({
+        const newNote = {
             id: generateUniqueId(),
-            comment: note,
+            comment: currentNote,
             parentArticle: props.id,
-        }));
-        setNote('')
+        };
+
+        // Add the new note to the state
+        setNotes((prevNotes) => [...prevNotes, newNote]);
+
+        // Dispatch action to add the note to Redux store
+        dispatch(addNote(newNote));
+
+        // Update local storage with the entire array of notes
+        localStorage.setItem('2', JSON.stringify([...parsedData, newNote]));
+
+        // Clear the input field
+        setCurrentNote('');
     };
 
     const onRemoveNoteHandler = (note) => {
@@ -27,10 +52,9 @@ export default function Notes(props) {
         return Date.now().toString();
     };
 
-
     return (
         <div>
-            {filteredNotes.map((note) => (
+            {notes.map((note) => (
                 <div className="commentDiv" key={note.id}>
                     <p>{note.comment}</p>
                     <i className="fa-sharp fa-solid fa-xmark" onClick={() => onRemoveNoteHandler(note)}></i>
@@ -38,9 +62,9 @@ export default function Notes(props) {
             ))}
             <form onSubmit={onSubmitHandler}>
                 <label>New Note:</label>
-                <input type="text" value={note} onChange={(e) => setNote(e.target.value)}></input>
+                <input type="text" value={currentNote} onChange={(e) => setCurrentNote(e.target.value)}></input>
                 <button type="submit">Add note</button>
             </form>
         </div>
-    )
+    );
 }

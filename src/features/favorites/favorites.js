@@ -12,7 +12,6 @@ export default function Favorites() {
 
     // Add the favorite Articles to the Front end
     useEffect(() => {
-
         if (storedArticlesString) {
             // Set the parsed data to the state
             for (const article of parsedData) {
@@ -20,7 +19,6 @@ export default function Favorites() {
             }
         }
     },[]);
-
 
     // Remove articles from LocalStorage and Front end
     const onRemoveArticleHandler = (article) => {
@@ -32,7 +30,7 @@ export default function Favorites() {
         const updatedData = parsedData.filter((existingArticle) => existingArticle.data.title !== article.data.title);
         
         // Set the updated data back to local storage
-        localStorage.setItem('1', JSON.stringify(updatedData)); 
+        localStorage.setItem('1', JSON.stringify(updatedData));
         setFavoriteArticles(updatedData);
     };
 
