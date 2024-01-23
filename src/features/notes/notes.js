@@ -11,14 +11,19 @@ export default function Notes(props) {
     const storedNotesString = localStorage.getItem('2');
     // Retrieve existing data from local storage
     let parsedData = JSON.parse(storedNotesString);
-    console.log(storedNotesString)
 
     // Add the notes to the Front end
     useEffect(() => {
         if (Array.isArray(parsedData)) {
+            const filteredNotes = [];
+            for (const note of parsedData) {
+                if (note.parentArticle === props.id) {
+                    filteredNotes.push(note)
+                }
+            }
             if (storedNotesString) {
                 // Set the parsed data to the state
-                setNotes(parsedData);
+                setNotes(filteredNotes);
             }
         }
     }, [storedNotesString]);
