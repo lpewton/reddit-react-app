@@ -51,6 +51,15 @@ export default function Notes(props) {
 
     const onRemoveNoteHandler = (note) => {
         dispatch(removeNote(note));
+         // Ensure existingData is an array
+         parsedData = Array.isArray(parsedData) ? parsedData : [];
+
+         // Filter out the article to remove
+         const updatedData = parsedData.filter((existingNote) => existingNote.id !== note.id);
+
+         // Set the updated data back to local storage
+         localStorage.setItem('2', JSON.stringify(updatedData));
+         setNotes(updatedData);
     };
 
     const generateUniqueId = () => {
