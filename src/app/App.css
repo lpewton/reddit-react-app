@@ -3,19 +3,6 @@ header {
   background-color: rgb(143, 65, 26);
 }
 
-h3 {
-  margin: 0;
-  padding-top: 10px;
-  text-align: center;
-}
-.navBar ul {
-  margin: 0;
-  height: 30px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
 a {
   text-decoration: none;
   color: black;
@@ -24,7 +11,7 @@ a {
 /* Footer */
 footer {
   background-color: rgb(143, 65, 26);
-  height: 30px;
+  height: 40px;
 }
 
 /* Article Card */

@@ -31,7 +31,7 @@ export default function Home() {
         getArticlesData();
 
         // Retrieve data from localStorage
-        const storedArticlesString = localStorage.getItem('1');
+        const storedArticlesString = localStorage.getItem('favorites');
         // Retrieve existing data from local storage
         let parsedData = JSON.parse(storedArticlesString);
         if (storedArticlesString) {
@@ -44,7 +44,7 @@ export default function Home() {
     }, []);
 
     const onAddArticleHandler = (article) => {
-        const existingDataString = localStorage.getItem('1');
+        const existingDataString = localStorage.getItem('favorites');
         // Retrieve existing data from local storage
         let existingData = existingDataString ? JSON.parse(existingDataString) : [];
 
@@ -60,7 +60,7 @@ export default function Home() {
             const updatedData = [...existingData, article];
 
             // Set the updated data back to local storage
-            localStorage.setItem('1', JSON.stringify(updatedData));
+            localStorage.setItem('favorites', JSON.stringify(updatedData));
             setFavoriteArticles(updatedData);
 
         }
@@ -71,10 +71,11 @@ export default function Home() {
     }
 
     return (
-        <div>
-            <h2>Recent Posts</h2>
+        <div className="container">
+            <h2 className="text-center">Recent Posts</h2>
+            <div className="row d-flex mx-auto justify-content-around">
             {data.map((article) => (
-                <div className="cardDiv" key={article.data.id}>
+                <div className="cardDiv col-md-5 col-lg-2" key={article.data.id}>
                     <div className="cardHeader">
                         <h4>{article.data.title}</h4>
                         <div>
@@ -88,6 +89,7 @@ export default function Home() {
                     </Link>
                 </div>
             ))}
+            </div>
         </div>
     )
 }

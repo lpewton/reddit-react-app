@@ -6,7 +6,7 @@ export default function Favorites() {
     const [favoriteArticles, setFavoriteArticles] = useState([]);
 
     // Retrieve data from localStorage
-    const storedArticlesString = localStorage.getItem('1');
+    const storedArticlesString = localStorage.getItem('favorites');
     // Retrieve existing data from local storage
     let parsedData = JSON.parse(storedArticlesString);
 
@@ -30,7 +30,7 @@ export default function Favorites() {
         const updatedData = parsedData.filter((existingArticle) => existingArticle.data.title !== article.data.title);
         
         // Set the updated data back to local storage
-        localStorage.setItem('1', JSON.stringify(updatedData));
+        localStorage.setItem('favorites', JSON.stringify(updatedData));
         setFavoriteArticles(updatedData);
     };
 

@@ -5,16 +5,16 @@ import ROUTES from "./routes";
 export default function AppLayout() {
     return (
         <div>
-            <header>
-                <h3>Reddit Archeo</h3>
-                <nav className="navBar">
-                    <ul className="navBar-ul">
-                        <li>
+            <header className="bg-gradient">
+                <h2 className="text-center py-2">Reddit Archeo</h2>
+                <nav className="navBar pb-2 border-top border-dark">
+                    <ul className="navBar-ul h4 decoration-none m-0 d-flex justify-content-around">
+                        <li className="nav-link text-dark decoration-none">
                             <NavLink to={ROUTES.homeRoute()} >
                                 Home
                             </NavLink>
                         </li>
-                        <li>
+                        <li className="nav-link">
                             <NavLink to={ROUTES.favoritesRoute()} >
                                 Favorites
                             </NavLink>
@@ -23,7 +23,7 @@ export default function AppLayout() {
                 </nav>
             </header>
             <Outlet />
-            <footer></footer>
+            <footer className="bg-gradient"></footer>
         </div>
     );
 }
