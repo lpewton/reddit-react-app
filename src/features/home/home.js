@@ -79,13 +79,13 @@ export default function Home() {
                     <div className="cardHeader col-11">
                         <h5 className="col-10">{article.data.title}</h5>
                         <div className="col-2 p-3">
-                            <button id="like-button" className="likeButton" onClick={() => onAddArticleHandler(article)}>
+                            <button id="like-button" className="cardHeaderButton" onClick={() => onAddArticleHandler(article)}>
                                 <i className={`${favoriteArticles.some((favoriteArticle) => favoriteArticle.data.title === article.data.title) ? 'fa-solid' : 'fa-regular'} fa-heart`} article={article.data.id}></i>
                             </button>
                         </div>
                     </div>
                     <Link to={article.data.url} target="_blank">
-                        <img  className="my-3" src={article.data.thumbnail} alt="Article image"></img>
+                        <img className="my-3" src={article.data.thumbnail} alt="Article image"></img>
                     </Link>
                 </div>
             ))}

@@ -36,24 +36,26 @@ export default function Favorites() {
 
 
     return (
-        <div>
-            <h2>Your top picks</h2>
+        <div className="container">
+            <h2 className="mt-3">Your top picks</h2>
+            <div className="row d-flex mx-auto justify-content-around">
             {favoriteArticles.map((article) => (
-                <div className="cardDiv" key={article.data.id}>
-                    <div className="cardHeader">
-                        <h4>{article.data.title}</h4>
-                        <div>
-                            <button className="likeButton">
+                <div className="cardDiv col-md-5 col-lg-3 bg-gradient" key={article.data.id}>
+                    <div className="cardHeader col-11">
+                    <h5 className="col-10">{article.data.title}</h5>
+                        <div className="col-2 p-3">
+                            <button className="cardHeaderButton">
                                 <i className="fa-sharp fa-solid fa-xmark" article={article.data.id} onClick={() => onRemoveArticleHandler(article)}></i>
                             </button>
                         </div>
                     </div>
                     <Link to={article.data.url} target="_blank">
-                        <img src={article.data.thumbnail} alt="Article image"></img>
+                        <img className="my-3" src={article.data.thumbnail} alt="Article image"></img>
                     </Link>
                     <Notes id={article.data.id} />
                 </div>
             ))}
+            </div>
         </div>
     )
 }
