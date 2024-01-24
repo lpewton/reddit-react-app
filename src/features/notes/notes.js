@@ -14,20 +14,13 @@ export default function Notes(props) {
 
     // Add the notes to the Front end
     useEffect(() => {
-        if (Array.isArray(parsedData)) {
-            const filteredNotes = [];
-            for (const note of parsedData) {
-                if (note.parentArticle === props.id) {
-                    filteredNotes.push(note)
-                }
-            }
-            if (storedNotesString) {
-                // Set the parsed data to the state
-                setNotes(filteredNotes);
-                console.log(filteredNotes)
-            }
+        parsedData = Array.isArray(parsedData) ? parsedData : [];
+        if (parsedData && storedNotesString) {
+            const filteredNotes = parsedData.filter((note) => note.parentArticle === props.id);
+            setNotes(filteredNotes);
+            console.log(filteredNotes);
         }
-    }, [storedNotesString]);
+    }, [storedNotesString, props.id]);
 
     const onSubmitHandler = (event) => {
         event.preventDefault();
@@ -37,14 +30,14 @@ export default function Notes(props) {
             parentArticle: props.id,
         };
 
-        // Add the new note to the state
-        setNotes((prevNotes) => [...prevNotes, newNote]);
+        // Update local storage with the entire array of notes
+        localStorage.setItem('2', JSON.stringify([...parsedData, newNote]));
 
         // Dispatch action to add the note to Redux store
         dispatch(addNote(newNote));
 
-        // Update local storage with the entire array of notes
-        localStorage.setItem('2', JSON.stringify([...parsedData, newNote]));
+        // Add the new note to the state
+        setNotes((prevNotes) => [...prevNotes, newNote]);
 
         // Clear the input field
         setCurrentNote('');
@@ -52,15 +45,13 @@ export default function Notes(props) {
 
     const onRemoveNoteHandler = (note) => {
         dispatch(removeNote(note));
-         // Ensure existingData is an array
-         parsedData = Array.isArray(parsedData) ? parsedData : [];
+        
+        // Filter out the article to remove
+        const updatedData = parsedData.filter((existingNote) => existingNote.id !== note.id);
 
-         // Filter out the article to remove
-         const updatedData = parsedData.filter((existingNote) => existingNote.id !== note.id);
-
-         // Set the updated data back to local storage
-         localStorage.setItem('2', JSON.stringify(updatedData));
-         setNotes(updatedData);
+        // Set the updated data back to local storage
+        localStorage.setItem('2', JSON.stringify(updatedData));
+        setNotes(updatedData);
     };
 
     const generateUniqueId = () => {
