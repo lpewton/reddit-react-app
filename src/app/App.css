@@ -1,3 +1,7 @@
+body {
+  font-family: 'Quicksand', sans-serif;
+}
+
 /* Header */
 header {
   background-color: rgb(143, 65, 26);
@@ -20,7 +24,7 @@ footer {
   border-radius: 8%;
   margin: 10px;
   padding: 1%;
-  background-color: rgba(165, 42, 42, 0.05);
+  background-color: rgba(120, 48, 1, 0.5);
   text-align: center;
 }
 
@@ -35,12 +39,6 @@ footer {
   background-color: rgba(165, 42, 42, 0.05);
   font-size: 25px;
   border-radius: 45%;
-}
-
-h4 {
-  padding: 2%;
-  margin: 1% 0;
-  width: 80%;
 }
 
 img {

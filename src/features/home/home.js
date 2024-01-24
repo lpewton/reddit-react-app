@@ -72,20 +72,20 @@ export default function Home() {
 
     return (
         <div className="container">
-            <h2 className="text-center">Recent Posts</h2>
+            <h2 className="mt-3">Recent Posts</h2>
             <div className="row d-flex mx-auto justify-content-around">
             {data.map((article) => (
-                <div className="cardDiv col-md-5 col-lg-2" key={article.data.id}>
-                    <div className="cardHeader">
-                        <h4>{article.data.title}</h4>
-                        <div>
+                <div className="cardDiv col-md-5 col-lg-3 bg-gradient" key={article.data.id}>
+                    <div className="cardHeader col-11">
+                        <h5 className="col-10">{article.data.title}</h5>
+                        <div className="col-2 p-3">
                             <button id="like-button" className="likeButton" onClick={() => onAddArticleHandler(article)}>
                                 <i className={`${favoriteArticles.some((favoriteArticle) => favoriteArticle.data.title === article.data.title) ? 'fa-solid' : 'fa-regular'} fa-heart`} article={article.data.id}></i>
                             </button>
                         </div>
                     </div>
                     <Link to={article.data.url} target="_blank">
-                        <img src={article.data.thumbnail} alt="Article image"></img>
+                        <img  className="my-3" src={article.data.thumbnail} alt="Article image"></img>
                     </Link>
                 </div>
             ))}
