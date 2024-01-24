@@ -69,15 +69,15 @@ export default function Notes(props) {
     return (
         <div>
             {notes.map((note) => (
-                <div className="commentDiv" key={note.id}>
-                    <p>{note.comment}</p>
-                    <i className="fa-sharp fa-solid fa-xmark" onClick={() => onRemoveNoteHandler(note)}></i>
+                <div className="row col-11 mx-auto note bg-gradient my-2" key={note.id}>
+                    <p className="col-10 text-start ps-4 py-auto my-1">{note.comment}</p>
+                    <i className="fa-sharp fa-solid fa-xmark col-2 my-auto" onClick={() => onRemoveNoteHandler(note)}></i>
                 </div>
             ))}
             <form onSubmit={onSubmitHandler}>
-                <label>New Note:</label>
+                <label className="me-2">New Note:</label>
                 <input type="text" value={currentNote} onChange={(e) => setCurrentNote(e.target.value)}></input>
-                <button type="submit">Add note</button>
+                <button className="btn p-1 note my-2" type="submit">Add note</button>
             </form>
         </div>
     );

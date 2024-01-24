@@ -84,6 +84,7 @@ export default function Home() {
                             </button>
                         </div>
                     </div>
+                    <hr className="my-1 col-11 mx-auto"/>
                     <Link to={article.data.url} target="_blank">
                         <img className="my-3" src={article.data.thumbnail} alt="Article image"></img>
                     </Link>

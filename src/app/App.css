@@ -31,7 +31,6 @@ footer {
 .cardHeader {
   display: flex;
   align-items: center;
-  border-bottom: solid 1px black;
 }
 
 .cardHeaderButton {
@@ -49,13 +48,17 @@ img {
 }
 
 /* Notes */
-.commentDiv {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-left: 5%;
-  width: 90%;
+
+.note {
+  background-color: rgba(154, 112, 30, 0.4);
+  border-radius: 3%;
 }
+
+.addNoteBtn {
+  background-color: rgba(154, 112, 30, 0.4);
+}
+
+/* Others */
 
 .App {
   text-align: center;

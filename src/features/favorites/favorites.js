@@ -49,8 +49,9 @@ export default function Favorites() {
                             </button>
                         </div>
                     </div>
+                    <hr className="my-1 col-11 mx-auto"/>
                     <Link to={article.data.url} target="_blank">
-                        <img className="my-3" src={article.data.thumbnail} alt="Article image"></img>
+                        <img className="mt-3 mb-1" src={article.data.thumbnail} alt="Article image"></img>
                     </Link>
                     <Notes id={article.data.id} />
                 </div>
