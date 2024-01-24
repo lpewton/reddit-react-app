@@ -12,7 +12,7 @@ import Favorites from '../features/favorites/favorites';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/">
       <Routes>
         <Route path="/" element={<AppLayout />}>
           <Route path="home" element={<Home />}/>

@@ -24,6 +24,7 @@ export default function Notes(props) {
             if (storedNotesString) {
                 // Set the parsed data to the state
                 setNotes(filteredNotes);
+                console.log(filteredNotes)
             }
         }
     }, [storedNotesString]);
