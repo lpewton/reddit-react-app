@@ -9,6 +9,7 @@ export default function Favorites() {
     const storedArticlesString = localStorage.getItem('favorites');
     // Retrieve existing data from local storage
     let parsedData = JSON.parse(storedArticlesString);
+    parsedData.reverse()
 
     // Add the favorite Articles to the Front end
     useEffect(() => {
@@ -34,7 +35,11 @@ export default function Favorites() {
         setFavoriteArticles(updatedData);
     };
 
-
+    if (favoriteArticles.length === 0) {
+        return (
+            <h2 className="mt-3">No highlights yet...</h2>
+        )
+    }
     return (
         <div className="container">
             <h2 className="mt-3">Your top picks</h2>

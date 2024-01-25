@@ -6,15 +6,11 @@ export default function Notes(props) {
     const [notes, setNotes] = useState([]);
     const [currentNote, setCurrentNote] = useState('');
     const dispatch = useDispatch();
-    //localStorage.clear()
-    console.log(localStorage.getItem('localStorageNotes'))
     // Retrieve data from localStorage
-
     const storedNotesString = localStorage.getItem('localStorageNotes');
     if (storedNotesString) {
     // Retrieve existing data from local storage
     var parsedData = JSON.parse(storedNotesString);
-    console.log('Hi')
     } else {
         parsedData = [];
     }
@@ -25,7 +21,6 @@ export default function Notes(props) {
         if (parsedData && storedNotesString) {
             const filteredNotes = parsedData.filter((note) => note.parentArticle === props.id);
             setNotes(filteredNotes);
-            console.log(filteredNotes);
         }
     }, [storedNotesString, props.id]);
 
@@ -38,7 +33,8 @@ export default function Notes(props) {
         };
 
         // Update local storage with the entire array of notes
-        localStorage.setItem('localStorageNotes', JSON.stringify([...parsedData, newNote]));
+        if (newNote.comment.trim().length > 0) {        
+            localStorage.setItem('localStorageNotes', JSON.stringify([...parsedData, newNote]));
 
         // Dispatch action to add the note to Redux store
         dispatch(addNote(newNote));
@@ -48,6 +44,7 @@ export default function Notes(props) {
 
         // Clear the input field
         setCurrentNote('');
+        }
     };
 
     const onRemoveNoteHandler = (note) => {
