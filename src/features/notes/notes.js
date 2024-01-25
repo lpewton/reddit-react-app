@@ -1,23 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
-import { addNote, removeNote } from "./notesSlice";
 
 export default function Notes(props) {
     const [notes, setNotes] = useState([]);
     const [currentNote, setCurrentNote] = useState('');
     const dispatch = useDispatch();
+
     // Retrieve data from localStorage
+    //localStorage.clear()
     const storedNotesString = localStorage.getItem('localStorageNotes');
-    if (storedNotesString) {
-    // Retrieve existing data from local storage
-    var parsedData = JSON.parse(storedNotesString);
-    } else {
-        parsedData = [];
-    }
+    let parsedData = storedNotesString ? JSON.parse(storedNotesString) : [];
 
     // Add the notes to the Front end
     useEffect(() => {
-        parsedData = Array.isArray(parsedData) ? parsedData : [];
         if (parsedData && storedNotesString) {
             const filteredNotes = parsedData.filter((note) => note.parentArticle === props.id);
             setNotes(filteredNotes);
@@ -33,23 +28,18 @@ export default function Notes(props) {
         };
 
         // Update local storage with the entire array of notes
-        if (newNote.comment.trim().length > 0) {        
+        if (newNote.comment.trim().length > 0) {
             localStorage.setItem('localStorageNotes', JSON.stringify([...parsedData, newNote]));
 
-        // Dispatch action to add the note to Redux store
-        dispatch(addNote(newNote));
+            // Add the new note to the state
+            setNotes((prevNotes) => [...prevNotes, newNote]);
 
-        // Add the new note to the state
-        setNotes((prevNotes) => [...prevNotes, newNote]);
-
-        // Clear the input field
-        setCurrentNote('');
+            // Clear the input field
+            setCurrentNote('');
         }
     };
 
     const onRemoveNoteHandler = (note) => {
-        dispatch(removeNote(note));
-        
         // Filter out the article to remove
         const updatedData = parsedData.filter((existingNote) => existingNote.id !== note.id);
 

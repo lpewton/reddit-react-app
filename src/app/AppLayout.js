@@ -18,7 +18,8 @@ export default function AppLayout() {
             <header className="bg-gradient">
                 <h2 className="text-center py-2">Reddit Archeo
                     <i className="fa-solid fa-person-digging"></i>
-                    <i className="fa-solid fa-skull"></i></h2>
+                    <i className="fa-solid fa-skull"></i>
+                </h2>
                 <nav className="navBar pb-2 border-top border-dark">
                     <ul className="navBar-ul h4 decoration-none m-0 d-flex justify-content-around">
                         <li className="nav-link text-dark decoration-none">

@@ -8,7 +8,7 @@ export default function Favorites() {
     // Retrieve data from localStorage
     const storedArticlesString = localStorage.getItem('favorites');
     // Retrieve existing data from local storage
-    let parsedData = JSON.parse(storedArticlesString);
+    let parsedData = storedArticlesString ? JSON.parse(storedArticlesString) : [];
     parsedData.reverse()
 
     // Add the favorite Articles to the Front end
@@ -23,9 +23,6 @@ export default function Favorites() {
 
     // Remove articles from LocalStorage and Front end
     const onRemoveArticleHandler = (article) => {
-        
-        // Ensure existingData is an array
-        parsedData = Array.isArray(parsedData) ? parsedData : [];
         
         // Filter out the article to remove
         const updatedData = parsedData.filter((existingArticle) => existingArticle.data.title !== article.data.title);
