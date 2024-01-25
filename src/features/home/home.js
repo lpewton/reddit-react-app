@@ -40,7 +40,6 @@ export default function Home() {
                 setFavoriteArticles((prevArticles) => [...prevArticles, article]);
             }
         }
-
     }, []);
 
     const onAddArticleHandler = (article) => {
@@ -62,7 +61,6 @@ export default function Home() {
             // Set the updated data back to local storage
             localStorage.setItem('favorites', JSON.stringify(updatedData));
             setFavoriteArticles(updatedData);
-
         }
     };
 

@@ -6,11 +6,18 @@ export default function Notes(props) {
     const [notes, setNotes] = useState([]);
     const [currentNote, setCurrentNote] = useState('');
     const dispatch = useDispatch();
-
+    //localStorage.clear()
+    console.log(localStorage.getItem('localStorageNotes'))
     // Retrieve data from localStorage
-    const storedNotesString = localStorage.getItem('2');
+
+    const storedNotesString = localStorage.getItem('localStorageNotes');
+    if (storedNotesString) {
     // Retrieve existing data from local storage
-    let parsedData = JSON.parse(storedNotesString);
+    var parsedData = JSON.parse(storedNotesString);
+    console.log('Hi')
+    } else {
+        parsedData = [];
+    }
 
     // Add the notes to the Front end
     useEffect(() => {
@@ -31,7 +38,7 @@ export default function Notes(props) {
         };
 
         // Update local storage with the entire array of notes
-        localStorage.setItem('2', JSON.stringify([...parsedData, newNote]));
+        localStorage.setItem('localStorageNotes', JSON.stringify([...parsedData, newNote]));
 
         // Dispatch action to add the note to Redux store
         dispatch(addNote(newNote));
@@ -50,7 +57,7 @@ export default function Notes(props) {
         const updatedData = parsedData.filter((existingNote) => existingNote.id !== note.id);
 
         // Set the updated data back to local storage
-        localStorage.setItem('2', JSON.stringify(updatedData));
+        localStorage.setItem('localStorageNotes', JSON.stringify(updatedData));
         setNotes(updatedData);
     };
 
@@ -59,7 +66,7 @@ export default function Notes(props) {
     };
 
     return (
-        <div>
+        <div className="mt-2">
             {notes.map((note) => (
                 <div className="row col-11 mx-auto note bg-gradient my-2" key={note.id}>
                     <p className="col-10 text-start ps-4 py-auto my-1">{note.comment}</p>
