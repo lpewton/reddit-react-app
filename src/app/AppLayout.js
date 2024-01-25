@@ -1,14 +1,18 @@
 import React, { useEffect } from "react";
-import { Outlet, NavLink, useNavigate } from "react-router-dom";
+import { Outlet, NavLink, useNavigate, useLocation } from "react-router-dom";
 import ROUTES from "./routes";
 
 export default function AppLayout() {
     const navigate = useNavigate();
+    const location = useLocation();
 
     // Use useEffect to navigate to the home route when the component is rendered
     useEffect(() => {
-        navigate(ROUTES.homeRoute());
-    }, [navigate]);
+        if (location.pathname === "/") {
+            navigate(ROUTES.homeRoute());
+        }
+    }, [location.pathname, navigate]);
+    
     return (
         <div>
             <header className="bg-gradient">
@@ -30,7 +34,9 @@ export default function AppLayout() {
                     </ul>
                 </nav>
             </header>
+            <div id="content">
             <Outlet default = {ROUTES.homeRoute}/>
+            </div>
             <footer className="bg-gradient"></footer>
         </div>
     );

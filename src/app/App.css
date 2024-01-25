@@ -2,6 +2,10 @@ body {
   font-family: 'Quicksand', sans-serif;
 }
 
+#content {
+  min-height: 85vh;
+}
+
 /* Header */
 header {
   background-color: rgb(143, 65, 26);
