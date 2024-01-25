@@ -1,14 +1,20 @@
-import React from "react";
-import { Outlet, NavLink } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Outlet, NavLink, useNavigate } from "react-router-dom";
 import ROUTES from "./routes";
 
 export default function AppLayout() {
+    const navigate = useNavigate();
+
+    // Use useEffect to navigate to the home route when the component is rendered
+    useEffect(() => {
+        navigate(ROUTES.homeRoute());
+    }, [navigate]);
     return (
         <div>
             <header className="bg-gradient">
                 <h2 className="text-center py-2">Reddit Archeo
-                    <i class="fa-solid fa-person-digging"></i>
-                    <i class="fa-solid fa-skull"></i></h2>
+                    <i className="fa-solid fa-person-digging"></i>
+                    <i className="fa-solid fa-skull"></i></h2>
                 <nav className="navBar pb-2 border-top border-dark">
                     <ul className="navBar-ul h4 decoration-none m-0 d-flex justify-content-around">
                         <li className="nav-link text-dark decoration-none">
@@ -24,7 +30,7 @@ export default function AppLayout() {
                     </ul>
                 </nav>
             </header>
-            <Outlet />
+            <Outlet default = {ROUTES.homeRoute}/>
             <footer className="bg-gradient"></footer>
         </div>
     );
