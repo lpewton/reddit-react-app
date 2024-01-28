@@ -1,70 +1,89 @@
-# Getting Started with Create React App
+# Reddit Archeo
+Reddit Archeo is a web application that ises an API to select all articles contained in Reddit and displays them in the home page. There, the user can see them and when they click on them it redirects to the original article.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Aside from that, the user can also select their favorite articles that are then stored in the local storage and displayed in the favorites tab. The user can then add notes (also stored in the local storage) to the various articles. These favorite articles can also be removed from the local storage.
 
-## Available Scripts
+Though this app is responsive, it is best shown on mobile phone screens.
 
-In the project directory, you can run:
+You can find the live link for this website here: [https://lpewton-reddit-archaeo-app.netlify.app.](https://lpewton-reddit-archaeo-app.netlify.app/home)
 
-### `npm start`
+## TABLE OF CONTENTS:
+  * [User Experience (UX):](#user-experience-ux)
+    + [App purpose](#app-purpose)
+    + [Target](#target)
+    + [Displays](#displays)
+    + [Colors and design](#colors-and-design)
+  * [Features](#features)
+  * [Unfixed bugs and features left to implement](#unfixed-bugs-and-features-left-to-implement)
+  * [Security Measures](#security-measures)
+  * [Validator Testing](#validator-testing)
+  * [Technologies Used](#technologies-used)
+  * [Deployment:](#deployment)
+    + [In the terminal](#in-the-terminal)
+    + [In Netlify](#in-netlify)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## User Experience (UX):
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### App purpose:
+The purpose of this website is to provide archaeology related articles to the user and save them. Also allowing the users to store some of them in order to go back to them later or to leave notes on them.
 
-### `npm test`
+This allows for reading the most recent news on the field without having to open many different pages or search.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Target:
+The target population for this app is anyone who is interested in the field of archaeology or anyone who wants to learn about it. Even though it's open to all publics, it can also be used by professionals to stay up to date with it.
 
-### `npm run build`
+### Displays:
+The layout of the app is clear, communicative and there is an easy intuition on how to find the information.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Colors and design:
+The colors of this website are consistent with the colors of the archaeology fiels, brown colors that are usually associated with the color of sediment. These are shown in different tones to distinguish the different functionalities of the page elements.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Features:
+### Header:
+This is where the user can move between the tabs and where the title is displayed:
 
-### `npm run eject`
+<img width="359" alt="Screenshot 2024-01-28 at 18 55 12" src="https://github.com/lpewton/reddit-react-app/assets/114712846/c4f74286-1b8d-41ba-a60a-41378d21ea92">
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Home page:
+Where all articles are displayed, regardless of the user's choice to store them.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<img width="358" alt="Screenshot 2024-01-28 at 18 56 15" src="https://github.com/lpewton/reddit-react-app/assets/114712846/8ef148e3-5cd0-4c61-ba7b-22360a3466e1">
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+### Favorites page:
+The articles deemed as favorites by the user are stored here, along with the notes stored with them.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<img width="360" alt="Screenshot 2024-01-28 at 19 01 01" src="https://github.com/lpewton/reddit-react-app/assets/114712846/9bc74ac3-1047-4a01-9d0f-8f1b29b0ec96">
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Unfixed bugs and features left to implement:
+Though the information is currently stored into the Local Storage, it might be more useful if some day you can store them in a database. With more time, one could be added to the app.
 
-### Code Splitting
+### SECURITY MEASURES:
+All app functions were tested several times to make sure they worked under many conditions.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Validator Testing:
+- All HTML templates passed the W3C validator (https://validator.w3.org) without any issues.
+- All CSS passed the Jigsaw validator (https://jigsaw.w3.org) with no errors found.
+- The app could be opened from Mozzila Firefox, Chrome and Safari without any issues.
+- This app was passed through the lighthouse test and passed without any issues. Performance is a little bit lower as it's reduced by the use of Bootstrap and the icons, but these are essential to the app.
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Technologies Used:
+- HTML5
+- CSS3
+- Bootstrap 5
+- JavaScript
+- React
 
-### Making a Progressive Web App
+## Deployment:
+### In the terminal:
+1. Run npx create-react-app reddit-archeo
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Develop your app.
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### In Netlify:
+1. Connect your repository to the Netlify app.
+2. Set the Deploy Settings to the following:
+   <img width="512" alt="Screenshot 2024-01-28 at 19 40 35" src="https://github.com/lpewton/reddit-react-app/assets/114712846/fb1e20f8-355e-47a8-91af-dae122c35b8a">
