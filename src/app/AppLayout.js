@@ -16,7 +16,7 @@ export default function AppLayout() {
     return (
         <div>
             <header className="bg-gradient">
-                <h2 className="text-center py-2">Reddit Archeo
+                <h2 className="text-center py-2">Reddit Archaeo
                     <i className="fa-solid fa-person-digging"></i>
                     <i className="fa-solid fa-skull"></i>
                 </h2>
