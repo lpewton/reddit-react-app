@@ -43,8 +43,7 @@ The colors of this website are consistent with the colors of the archaeology fie
 ### Header:
 This is where the user can move between the tabs and where the title is displayed:
 
-<img width="359" alt="Screenshot 2024-01-28 at 18 55 12" src="https://github.com/lpewton/reddit-react-app/assets/114712846/c4f74286-1b8d-41ba-a60a-41378d21ea92">
-
+<img width="355" alt="Screenshot 2024-09-04 at 11 45 52" src="https://github.com/user-attachments/assets/114074bf-dc57-4f52-8191-36dd5a0c289e">
 
 ### Home page:
 Where all articles are displayed, regardless of the user's choice to store them.
